@@ -136,10 +136,12 @@ section { padding: 56px 0; }
 .steps strong { display: block; font-family: var(--display); color: var(--ink); font-size: 1.05rem; margin-bottom: 4px; }
 .steps span { color: var(--ink3); font-size: .95rem; }
 
-/* Phone shots */
+/* Phone shots — lock the 506x900 source ratio so no layout engine can
+   stretch them (flex/grid stretch, stale height attributes, etc.). */
+.shots img, .hero-phone { aspect-ratio: 506 / 900; height: auto; object-fit: contain; }
 .shots { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 8px; scroll-snap-type: x mandatory; }
-.shots img { width: 220px; flex: none; border-radius: 26px; border: 1px solid var(--line-strong); scroll-snap-align: start; background: var(--card); }
-.hero-phone { justify-self: center; width: min(300px, 80%); border-radius: 34px; border: 1px solid var(--line-strong); box-shadow: 0 0 60px -10px rgba(204,255,0,.25); }
+.shots img { width: 220px; flex: none; align-self: flex-start; border-radius: 26px; border: 1px solid var(--line-strong); scroll-snap-align: start; background: var(--card); }
+.hero-phone { justify-self: center; align-self: center; width: min(300px, 80%); border-radius: 34px; border: 1px solid var(--line-strong); box-shadow: 0 0 60px -10px rgba(204,255,0,.25); }
 
 /* Callout */
 .callout { border-left: 3px solid var(--lime); background: var(--card); padding: 18px 20px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; color: var(--ink3); }
