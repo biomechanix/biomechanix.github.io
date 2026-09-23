@@ -38,7 +38,7 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
-img { max-width: 100%; display: block; }
+img { max-width: 100%; height: auto; display: block; }
 a { color: var(--link); text-underline-offset: 3px; }
 a:hover { text-decoration-thickness: 2px; }
 :focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; border-radius: 6px; }
@@ -64,9 +64,8 @@ p { margin: 0 0 1em; }
 .brand { display: flex; align-items: center; gap: 12px; font: 700 1.2rem/1 var(--display); color: var(--ink); text-decoration: none; letter-spacing: -0.02em; }
 /* Logo: lime square + black "B" with glow — same mark as the biomechanix.ai header/favicon */
 .brand-mark {
-  width: 34px; height: 34px; border-radius: 6px; flex: none; display: grid; place-items: center;
-  background: var(--lime); color: #000; box-shadow: var(--glow), 0 0 22px rgba(204,255,0,.35);
-  font: 900 26px/1 "Arial Black", Arial, sans-serif;
+  width: 40px; height: 40px; flex: none; border-radius: 6px;
+  box-shadow: var(--glow), 0 0 22px rgba(204,255,0,.35);
 }
 .nav { display: flex; gap: 4px 18px; flex-wrap: wrap; font-size: .95rem; }
 .nav a { color: var(--ink3); text-decoration: none; padding: 6px 0; }
