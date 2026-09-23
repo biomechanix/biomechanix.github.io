@@ -21,9 +21,7 @@
     <a class="brand" href="/" aria-label="Biomechanix home"><img class="brand-mark" src="/assets/img/logo.svg" alt="" width="40" height="40">BIOMECHANIX</a>
     <nav class="nav" aria-label="Main">
       <a href="/#platform">Platform</a>
-      <a href="/fitness" {% if page.nav == "fitness" %}aria-current="page"{% endif %}>Fitness</a>
-      <a href="/physio" {% if page.nav == "physio" %}aria-current="page"{% endif %}>Physio</a>
-      <a href="/sameeksha" {% if page.nav == "sameeksha" %}aria-current="page"{% endif %}>Sameeksha</a>
+      <a href="/applications" {% if page.section == "applications" %}aria-current="page"{% endif %}>Applications</a>
       <a href="/#company">Company</a>
       <a href="/support" {% if page.nav == "support" %}aria-current="page"{% endif %}>Support</a>
     </nav>
@@ -42,6 +40,7 @@
     <div>
       <h4>Company &amp; apps</h4>
       <ul>
+        <li><a href="/applications">All applications</a></li>
         <li><a href="/fitness">MoveMentor Fitness</a></li>
         <li><a href="/physio">MoveMentor Physio</a></li>
         <li><a href="/sameeksha">Sameeksha</a></li>
