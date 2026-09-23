@@ -22,7 +22,7 @@
     <nav class="nav" aria-label="Main">
       <a href="/#platform">Platform</a>
       <a href="/applications" {% if page.section == "applications" %}aria-current="page"{% endif %}>Applications</a>
-      <a href="/#company">Company</a>
+      <a href="/company" {% if page.section == "company" %}aria-current="page"{% endif %}>Company</a>
       <a href="/support" {% if page.nav == "support" %}aria-current="page"{% endif %}>Support</a>
     </nav>
   </div>
@@ -45,7 +45,8 @@
         <li><a href="/physio">MoveMentor Physio</a></li>
         <li><a href="/sameeksha">Sameeksha</a></li>
         <li><a href="/#platform">MoveMentor platform</a></li>
-        <li><a href="/#company">About Biomechanix</a></li>
+        <li><a href="/company">About Biomechanix</a></li>
+        <li><a href="/company#team">Team</a></li>
         <li><a href="https://biomechanix.ai">biomechanix.ai</a></li>
       </ul>
     </div>
