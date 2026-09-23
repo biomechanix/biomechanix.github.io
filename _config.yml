@@ -1,0 +1,10 @@
+title: Biomechanix
+description: Movement intelligence on your phone — AI form coaching, physiotherapy and musculoskeletal self-assessment.
+url: https://biomechanix.github.io
+# Play Store listing ids — update here if a package id changes.
+play:
+  fitness: com.biomechanix.mmfitness
+  physio: com.biomechanix.physiotherapy
+  sameeksha: com.biomechanix.selfassess
+support_url: https://github.com/biomechanix/biomechanix.github.io/issues/new
+exclude: [README.md]

@@ -1,38 +1,89 @@
-<!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Privacy Policy — MoveMentor / Biomechanix</title>
-<style>body{font-family:-apple-system,Helvetica,Arial,sans-serif;max-width:680px;margin:40px auto;padding:0 20px;color:#1a1a2e;line-height:1.6}h1{font-size:1.6em}h2{font-size:1.15em;margin-top:1.8em}a{color:#1565C0}footer{margin-top:3em;font-size:.85em;color:#777}</style></head>
-<body>
-<h1>Privacy Policy</h1>
-<p>Effective July 15, 2026 · Applies to the MoveMentor apps by Biomechanix Inc., including MoveMentor Fitness.</p>
+---
+layout: default
+title: Privacy Policy
+description: How the Biomechanix apps — MoveMentor Fitness, MoveMentor Physio and Sameeksha — collect, use and protect your data.
+---
+<!-- 2026-09: per-app sections added for MoveMentor Physio and Sameeksha.
+     Pending legal / privacy review — health-data wording in particular. -->
+<div class="wrap">
+  <article class="prose">
+    <span class="eyebrow">Legal</span>
+    <h1>Privacy Policy</h1>
+    <p class="meta">Effective October 1, 2026 · Replaces the policy of July 15, 2026</p>
+    <p>This policy covers the apps made by Biomechanix Inc.: <strong>MoveMentor Fitness</strong>, <strong>MoveMentor Physio</strong> and <strong>Sameeksha</strong>. The first section applies to all three. The sections after it explain what each app does differently.</p>
 
-<h2>What we collect</h2>
-<ul>
-<li><strong>Account information</strong>: your email address and name, used to create and secure your account.</li>
-<li><strong>Workout records</strong>: the sessions you log — exercise, reps, form scores, duration — linked to your account so your history follows you across devices.</li>
-</ul>
+    <h2 id="summary">The short version</h2>
+    <ul>
+      <li><strong>Your camera feed is analyzed on your phone.</strong> Live camera frames are never uploaded or stored by us.</li>
+      <li><strong>We don't do facial recognition</strong>, and we don't create faceprints or other biometric identifiers.</li>
+      <li><strong>We don't sell your data</strong>, show you ads, or share your data with third parties for their own purposes.</li>
+      <li><strong>You can use the apps without an account</strong> (guest or offline mode), and you can delete your account at any time.</li>
+    </ul>
 
-<h2>What we do NOT collect</h2>
-<ul>
-<li><strong>Camera video</strong>: pose analysis runs entirely on your device. Camera frames are never transmitted, stored, or seen by us.</li>
-<li>Location, contacts, advertising identifiers, or browsing data.</li>
-</ul>
+    <h2 id="all-apps">What applies to all our apps</h2>
 
-<h2>How your data is used</h2>
-<p>Solely to provide app functionality: signing you in, syncing your workout history, and showing your progress. We do not sell your data, use it for advertising, or share it with third parties for their own purposes. Data is processed and stored with our infrastructure provider (Supabase).</p>
+    <h3>Account information</h3>
+    <p>If you create an account, we collect your email address and name so we can create and secure it. An account is optional. Without one, your data stays on your device.</p>
 
-<h2 id="face-data">Camera, body-pose, and face data</h2>
-<p>The apps use your device camera solely for <strong>on-device body-pose estimation</strong>: a skeletal model of 33 body landmarks (which includes approximate facial keypoints such as the nose and eyes, used only to estimate head and posture position). We do <strong>not</strong> perform facial recognition or identification, and we do not create faceprints or any biometric identifiers.</p>
-<p>Camera frames are processed in real time on your device and immediately discarded. Neither camera frames nor pose landmarks are stored, transmitted off the device, or shared with anyone. <strong>Retention of camera and face data: none (zero).</strong> Only aggregate workout results (rep counts, form scores, durations) are saved to your account.</p>
+    <h3 id="face-data">Camera, body-pose and face data</h3>
+    <p>The apps use your camera for <strong>on-device body-pose estimation</strong>. This is a skeletal model of 33 body landmarks. It includes approximate facial keypoints such as the nose and eyes, which are used only to estimate head position and posture. Camera frames are processed in real time on your device and then discarded. <strong>We retain no live camera or face data.</strong></p>
+    <p>Video is stored only when you choose to record a clip, and that clip stays on your device unless you choose to share it. The one exception is described under <a href="#physio">MoveMentor Physio</a>: clip share links.</p>
 
-<h2 id="on-device-ai">On-device AI</h2>
-<p>AI features (workout plan generation, exercise classification, form scoring) run <strong>on your device</strong>, using Apple's on-device models and our local algorithms. Your personal data is <strong>not</strong> sent to any third-party AI service.</p>
+    <h3 id="on-device-ai">On-device AI</h3>
+    <p>AI features such as workout plan generation, exercise classification, form scoring and assessment scoring run <strong>on your device</strong>. They use our own algorithms and the on-device models provided by your phone's operating system. Your personal data isn't sent to any third-party AI service.</p>
 
-<h2>Deleting your account</h2>
-<p>Delete your account directly in the app (<strong>Settings &rarr; Delete Account</strong>), or without the app via our <a href="/delete-account">account deletion page</a>. Either way your account and all associated data are permanently removed.</p>
+    <h3>Where your data is stored</h3>
+    <p>Data that syncs to your account is stored with our infrastructure provider, Supabase. It's protected by access rules that limit each record to you and anyone you have explicitly chosen to share it with. Data is encrypted in transit.</p>
 
-<h2>Contact</h2>
-<p>Privacy questions: <a href="https://github.com/biomechanix/biomechanix.github.io/issues/new">via our support page</a>.</p>
+    <h3>What we don't collect</h3>
+    <p>Location, contacts, advertising identifiers or browsing data. The apps contain no advertising or third-party analytics SDKs.</p>
 
-<footer>Biomechanix Inc. · <a href="/">Support</a></footer>
-</body></html>
+    <h2 id="fitness">MoveMentor Fitness</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Data</th><th>Where it lives</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>Workout records: exercise, reps, form scores, duration</td><td>Your device, and your account if you're signed in</td><td>To show your history and progress across devices</td></tr>
+        <tr><td>Rep clips you choose to record (video with audio)</td><td>Your device only</td><td>To let you review your technique. They're shared only if you choose to share one</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2 id="physio">MoveMentor Physio</h2>
+    <p>MoveMentor Physio is used by physiotherapists (clinicians) and their patients. The clinician is responsible for the patient information they record, and for having an appropriate basis to record it.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Data</th><th>Where it lives</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>Patient records created by a clinician: name, date of birth, condition, body region, notes and exam findings (range of motion, symmetry, hold time, pain score)</td><td>The clinician's device</td><td>To support examination and treatment</td></tr>
+        <tr><td>Prescriptions: the clinician's name and clinic, the patient's name, the condition, relevant exam findings, and the prescribed exercises and doses</td><td>The devices of the clinician and patient. If they deliver it online, also both accounts</td><td>To deliver a home exercise programme</td></tr>
+        <tr><td>Adherence: completed sets and reps and peak range of motion for each prescribed exercise</td><td>The patient's device. If sent online, also visible to the prescribing clinician, and only for that prescription</td><td>So the clinician can monitor progress</td></tr>
+        <tr><td>Exercises a clinician authors</td><td>The clinician's account, visible to that clinician and their linked patients</td><td>To prescribe custom exercises</td></tr>
+        <tr><td>Clip share links: a video a clinician deliberately records and chooses to share</td><td>Our storage, reachable by anyone who has the link. Links expire after 30 days, and archived clips are deleted 90 days after that</td><td>To share a demonstration or test with a patient, family member or colleague</td></tr>
+      </tbody>
+    </table></div>
+    <p>Prescriptions shared by QR code or file go directly from device to device and never pass through our servers. Patients link their accounts to a clinician only by entering a join code that the clinician gives them.</p>
+
+    <h2 id="sameeksha">Sameeksha</h2>
+    <p>Sameeksha processes information about your health. We handle it with extra care and use it only to produce your assessment and report.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Data</th><th>Where it lives</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>Demographics: age, sex, affected side, and whether a caregiver assisted</td><td rowspan="3">Your device. If you're signed in with backup turned on, also your account, where only you can read it</td><td rowspan="3">To score your assessment against appropriate reference values and produce your report and history</td></tr>
+        <tr><td>Your answers: questionnaire answers, safety-screen answers, and anything you type in your own words</td></tr>
+        <tr><td>Measurements and results: movement-test readings, walking and posture measurements, findings, risk scores and your recommendation, plus the app version and phone model used</td></tr>
+      </tbody>
+    </table></div>
+    <p>Video and body landmarks from the movement tests <strong>never leave your device</strong>. Only the resulting measurements are saved.</p>
+    <p><strong>Your controls:</strong> you can delete a single assessment or <em>all your data</em> in the app. Deleting on your device also deletes the backup copies in your account. You can export everything, including every assessment and its PDF report, as a ZIP file at any time from <em>Settings → Privacy &amp; data → Export my data</em>. This works offline and without an account. You decide who receives a report you share.</p>
+
+    <h2 id="deletion">Deleting your data</h2>
+    <p>Delete your account in the app from <strong>Settings</strong>, or without the app through our <a href="/delete-account">account deletion page</a>. Deleting your account permanently removes it and all the data linked to it on our servers. Data stored only on your device is removed when you delete it in the app or uninstall the app.</p>
+
+    <h2>Children</h2>
+    <p>The apps are not directed at children under 13. A child should use Sameeksha only with a parent or caregiver, using caregiver-assisted mode.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>If we make a material change, we'll update the effective date above and let you know in the app.</p>
+
+    <h2>Contact</h2>
+    <p>Privacy questions: <a href="/support">through our support page</a>.</p>
+  </article>
+</div>
