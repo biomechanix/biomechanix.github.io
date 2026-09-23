@@ -7,18 +7,18 @@
 <meta name="description" content="{{ page.description | default: site.description }}">
 <meta property="og:title" content="{{ page.title | default: site.title }}">
 <meta property="og:description" content="{{ page.description | default: site.description }}">
-<meta name="theme-color" content="#F4F1EA">
-<link rel="icon" href="/assets/img/icon.png">
+<meta name="theme-color" content="#000000">
+<link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span>Biomechanix</a>
+    <a class="brand" href="/" aria-label="Biomechanix home"><span class="brand-mark" aria-hidden="true">B</span>BIOMECHANIX</a>
     <nav class="nav" aria-label="Main">
       <a href="/fitness" {% if page.nav == "fitness" %}aria-current="page"{% endif %}>Fitness</a>
       <a href="/physio" {% if page.nav == "physio" %}aria-current="page"{% endif %}>Physio</a>
@@ -33,7 +33,7 @@
 <footer class="site-footer">
   <div class="wrap">
     <div>
-      <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span>Biomechanix</a>
+      <a class="brand" href="/" aria-label="Biomechanix home"><span class="brand-mark" aria-hidden="true">B</span>BIOMECHANIX</a>
       <p style="margin-top:12px;max-width:30em">Phone-camera movement analysis for training, rehabilitation and self-assessment. Pose analysis runs on your device, and camera video is never uploaded.</p>
       <p>© 2026 Biomechanix Inc.</p>
     </div>
