@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% if page.title %}{{ page.title }} — {% endif %}Biomechanix</title>
+<meta name="description" content="{{ page.description | default: site.description }}">
+<meta property="og:title" content="{{ page.title | default: site.title }}">
+<meta property="og:description" content="{{ page.description | default: site.description }}">
+<meta name="theme-color" content="#F4F1EA">
+<link rel="icon" href="/assets/img/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span>Biomechanix</a>
+    <nav class="nav" aria-label="Main">
+      <a href="/fitness" {% if page.nav == "fitness" %}aria-current="page"{% endif %}>Fitness</a>
+      <a href="/physio" {% if page.nav == "physio" %}aria-current="page"{% endif %}>Physio</a>
+      <a href="/sameeksha" {% if page.nav == "sameeksha" %}aria-current="page"{% endif %}>Sameeksha</a>
+      <a href="/support" {% if page.nav == "support" %}aria-current="page"{% endif %}>Support</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+{{ content }}
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div>
+      <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span>Biomechanix</a>
+      <p style="margin-top:12px;max-width:30em">Phone-camera movement analysis for training, rehabilitation and self-assessment. Pose analysis runs on your device, and camera video is never uploaded.</p>
+      <p>© 2026 Biomechanix Inc.</p>
+    </div>
+    <div>
+      <h4>Apps</h4>
+      <ul>
+        <li><a href="/fitness">MoveMentor Fitness</a></li>
+        <li><a href="/physio">MoveMentor Physio</a></li>
+        <li><a href="/sameeksha">Sameeksha</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Help &amp; legal</h4>
+      <ul>
+        <li><a href="/support">Support</a></li>
+        <li><a href="/privacy">Privacy Policy</a></li>
+        <li><a href="/delete-account">Delete your account</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
