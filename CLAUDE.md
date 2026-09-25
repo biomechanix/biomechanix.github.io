@@ -12,6 +12,7 @@ Fitness, MoveMentor Physio, Sameeksha). Plain Jekyll on GitHub Pages from
 | `web-content-writing` | Writing or rewriting copy. Voice, page patterns, health and privacy wording rules, the adding-an-app checklist. |
 | `web-content-validation` | Before publishing any claim. Claim → source → `claims.yml` → `content_lint.py`, never-publish list, approval gates. |
 | `web-content-audit` | Periodic or pre-release accuracy review. Source drift, store links, consistency, report format. |
+| `web-template-alignment` | Aligning the site to a given template (HTML/CSS theme, design export, XML sitemap/model, mockup). Inventory → approved plan → implement look, keep content → verify. |
 
 Content tools (`tools/content/`):
 
@@ -20,6 +21,9 @@ python3 tools/content/content_lint.py      # must pass before any PR (claims led
 python3 tools/content/source_drift.py      # audit: changed sources, external/store links, in-app privacy URLs
 python3 tools/content/outline.py [--md]    # site map: pages, headings, anchors, nav
 ```
+Template tools (`tools/template/`): `inventory.py` (template → pages/components/tokens/assets/risks),
+`text_diff.py` (content preserved vs origin/main), `contrast.py` (WCAG AA for tokens),
+`side_by_side.py` (template vs site screenshots at real viewport widths).
 `tools/content/claims.yml` is the claims ledger. Every number on the site is
 registered there with its source.
 
