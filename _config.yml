@@ -7,4 +7,4 @@ play:
   physio: com.biomechanix.physiotherapy
   sameeksha: com.biomechanix.selfassess
 support_url: https://github.com/biomechanix/biomechanix.github.io/issues/new
-exclude: [README.md]
+exclude: [README.md, CLAUDE.md, tools]   # .claude/ is skipped by Jekyll as a dot-directory
