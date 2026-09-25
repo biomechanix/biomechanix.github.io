@@ -1,0 +1,130 @@
+# Claims ledger for biomechanix.github.io
+#
+# Every checkable fact on the public site — especially every NUMBER — is
+# registered here with the page(s) it appears on and the source that proves it.
+# tools/content/content_lint.py fails if a page states a number that no entry
+# covers for that page, so new facts can't slip in unsourced.
+#
+# Fields
+#   id        stable slug
+#   claim     the fact in plain words
+#   numbers   tokens as they appear in page text (digits or number words)
+#   pages     page files, or ["*"] for any page
+#   source    where it is proven: repo path (siblings under ~/code/projects/),
+#             URL, or "owner-approved <date>" for policy/team decisions
+#   verified  YYYY-MM-DD the source was last checked
+#
+# To add a claim: verify it (see the web-content-validation skill), then add an
+# entry. To change one: re-verify and bump `verified`.
+
+claims:
+  - id: pose-landmarks
+    claim: Pose estimation tracks 33 body landmarks at 30 frames per second, on device
+    numbers: ["33", "30"]
+    pages: [index.html, fitness.html]
+    source: mm-fitness/FEATURES.md §3 (MediaPipe 33 landmarks @ 30 FPS, pose_landmarker_lite.task)
+    verified: 2026-09-25
+
+  - id: pose-landmarks-privacy
+    claim: The body-pose model has 33 landmarks including approximate facial keypoints
+    numbers: ["33"]
+    pages: [privacy.html]
+    source: mm-fitness/FEATURES.md §3; privacy policy owner-approved 2026-09-23
+    verified: 2026-09-25
+
+  - id: phone-distance
+    claim: Place the phone about 2–2.5 m (6–8 ft) away at chest height
+    numbers: ["2", "2.5", "6", "8"]
+    pages: [index.html, fitness.html, support.html]
+    source: mm-fitness/MoveMentorFitness_USER_GUIDE.md (Setup — 6-8 feet away, chest height)
+    verified: 2026-09-25
+
+  - id: floor-space
+    claim: About 2 × 2 m (6 × 6 ft) of clear floor
+    numbers: ["2", "6"]
+    pages: [fitness.html, support.html]
+    source: mm-fitness/MoveMentorFitness_USER_GUIDE.md (Setup — 6ft x 6ft minimum)
+    verified: 2026-09-25
+
+  - id: deletion-web-request-sla
+    claim: Web deletion requests are completed within 30 days
+    numbers: ["30"]
+    pages: [delete-account.html]
+    source: owner-approved policy (delete-account page since 2026-07; re-approved 2026-09-23)
+    verified: 2026-09-25
+
+  - id: physio-clip-share-retention
+    claim: Physio clip share links expire after 30 days; archived clips are purged 90 days later
+    numbers: ["30", "90"]
+    pages: [privacy.html]
+    source: mm-physio/docs/app/CLOUD_VIDEO_STORAGE_DESIGN.md (Active retention 30 days; archived 90 days)
+    verified: 2026-09-25
+
+  - id: privacy-dates
+    claim: Privacy policy effective October 1, 2026, replacing the policy of July 15, 2026
+    numbers: ["1", "15", "2026"]
+    pages: [privacy.html]
+    source: owner-approved 2026-09-23; previous policy = biomechanix.github.io commit 9764a6c
+    verified: 2026-09-25
+
+  - id: children-age
+    claim: The apps are not directed at children under 13
+    numbers: ["13"]
+    pages: [privacy.html]
+    source: owner-approved 2026-09-23 (privacy policy)
+    verified: 2026-09-25
+
+  - id: sameeksha-risk-scores
+    claim: Sameeksha scores three risk dimensions (symptom, movement, safety), each out of 100
+    numbers: ["100", "three"]
+    pages: [sameeksha.html, index.html]
+    source: mm-selfassess/README.md (How the assessment works — three risk dimensions, each /100)
+    verified: 2026-09-25
+
+  - id: sameeksha-steps
+    claim: The assessment has five steps (about you, symptoms, safety screen, movement tests, walking check)
+    numbers: ["five"]
+    pages: [sameeksha.html]
+    source: mm-selfassess/README.md (demographics, questionnaire, safety screen, camera tests, gait)
+    verified: 2026-09-25
+
+  - id: sameeksha-languages
+    claim: Sameeksha is available in six languages (en, hi, pa, ta, te, kn)
+    numbers: ["six"]
+    pages: [sameeksha.html, applications.html, index.html, support.html]
+    source: mm-selfassess/README.md (en + hi, pa, ta, te, kn at full key parity)
+    verified: 2026-09-25
+
+  - id: app-count
+    claim: There are three Biomechanix applications (Fitness, Physio, Sameeksha)
+    numbers: ["three"]
+    pages: [index.html, applications.html, privacy.html]
+    source: _config.yml `play:` keys (lint cross-checks the count)
+    verified: 2026-09-25
+
+  - id: gaurav-experience
+    claim: Dr. Gaurav Sharma has more than 15 years of experience as a sports physiotherapist
+    numbers: ["15"]
+    pages: [company.html]
+    source: mm-business/BioMechanix_OnePager_V02.docx + V04 (team section); team listing owner-approved 2026-09-23
+    verified: 2026-09-25
+
+  - id: company-experience
+    claim: The team draws on more than a decade of hands-on clinical experience
+    numbers: []
+    pages: [index.html, company.html]
+    source: https://biomechanix.ai (company's own public copy)
+    verified: 2026-09-25
+
+# People who may be named on the site (owner-approved). Anyone else is flagged.
+people:
+  - name: Dr. Gaurav Sharma
+    title: Chief Revenue Officer
+    approved: 2026-09-23
+  - name: Raghunandan S K
+    title: Head of Research and Development
+    approved: 2026-09-23
+    note: role-description line only until the owner provides a bio
+
+# Names that appear in internal documents but are NOT approved for the site.
+not_approved_names: ["Mallik", "Hiremani", "Arun Hiremath"]
