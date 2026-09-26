@@ -1,0 +1,28 @@
+{
+  "hosting": {
+    "site": "biomechanixdev",
+    "public": "public",
+    "cleanUrls": true,
+    "trailingSlash": false,
+    "ignore": ["firebase.json", "**/.*"],
+    "redirects": [
+      { "source": "/index.html", "destination": "/", "type": 301 },
+      { "source": "/:page.html", "destination": "/:page", "type": 301 },
+
+      { "source": "/company/about", "destination": "/company", "type": 301 },
+      { "source": "/company/careers", "destination": "/company", "type": 301 },
+      { "source": "/company/contact", "destination": "/company#contact", "type": 301 },
+      { "source": "/demo", "destination": "/company#contact", "type": 301 },
+      { "source": "/platform/features", "destination": "/#platform", "type": 301 },
+      { "source": "/platform/technology", "destination": "/#platform", "type": 301 },
+      { "source": "/solutions/physical-therapy", "destination": "/physio", "type": 301 },
+      { "source": "/solutions/sports", "destination": "/applications", "type": 301 },
+      { "source": "/pricing", "destination": "/applications", "type": 301 },
+      { "source": "/logo-preview", "destination": "/", "type": 301 }
+    ],
+    "headers": [
+      { "source": "**/*.@(css|svg|jpg|png)", "headers": [ { "key": "Cache-Control", "value": "public, max-age=3600" } ] },
+      { "source": "**", "headers": [ { "key": "X-Content-Type-Options", "value": "nosniff" } ] }
+    ]
+  }
+}

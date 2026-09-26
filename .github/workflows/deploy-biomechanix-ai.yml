@@ -1,0 +1,86 @@
+name: deploy-biomechanix-ai
+# Builds the site with GitHub's own Jekyll builder (same output as GitHub
+# Pages) and deploys it to Firebase Hosting (project/site biomechanixdev),
+# which serves biomechanix.ai and www.biomechanix.ai.
+#   pull_request -> preview channel, URL commented on the PR (7 days)
+#   push to main  -> live (biomechanix.ai)
+# Deploy steps run only when the FIREBASE_SERVICE_ACCOUNT_BIOMECHANIXDEV
+# secret exists. Without it the job still builds and checks, then says so.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+
+concurrency:
+  group: firebase-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build with Jekyll (GitHub Pages builder)
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+
+      - name: Stage build for Firebase
+        run: |
+          sudo cp -R _site deploy/firebase/public
+          sudo chown -R "$USER" deploy/firebase/public
+
+      - name: Check the build
+        run: |
+          pip install --quiet pyyaml
+          python3 tools/content/content_lint.py
+          cd deploy/firebase/public
+          for f in index.html applications.html fitness.html physio.html sameeksha.html company.html support.html privacy.html delete-account.html assets/site.css; do
+            test -f "$f" || { echo "missing $f"; exit 1; }
+          done
+          for f in tools CLAUDE.md deploy .claude; do
+            test ! -e "$f" || { echo "internal file published: $f"; exit 1; }
+          done
+          grep -q 'rel="canonical" href="https://biomechanix.ai/company"' company.html || { echo "canonical tag missing"; exit 1; }
+          if grep -rq '{{\|{%' --include=*.html .; then echo "unrendered Liquid"; exit 1; fi
+          echo "build OK: $(ls *.html | wc -l) pages"
+
+      - name: Is deployment configured?
+        id: cfg
+        env:
+          SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_BIOMECHANIXDEV }}
+        run: |
+          if [ -n "$SA" ]; then echo "deploy=true" >> "$GITHUB_OUTPUT"
+          else echo "deploy=false" >> "$GITHUB_OUTPUT"
+               echo "::notice::FIREBASE_SERVICE_ACCOUNT_BIOMECHANIXDEV is not set: built and checked, not deployed."
+          fi
+
+      - name: Deploy preview (pull request)
+        if: steps.cfg.outputs.deploy == 'true' && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_BIOMECHANIXDEV }}
+          projectId: biomechanixdev
+          entryPoint: deploy/firebase
+          expires: 7d
+
+      - name: Deploy live (main)
+        if: steps.cfg.outputs.deploy == 'true' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_BIOMECHANIXDEV }}
+          projectId: biomechanixdev
+          entryPoint: deploy/firebase
+          channelId: live

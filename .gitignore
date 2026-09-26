@@ -1,3 +1,6 @@
 __pycache__/
 *.pyc
 .DS_Store
+deploy/firebase/public/
+deploy/firebase/.firebase/
+_site/

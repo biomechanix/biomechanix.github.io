@@ -7,4 +7,5 @@ play:
   physio: com.biomechanix.physiotherapy
   sameeksha: com.biomechanix.selfassess
 contact_email: contact@biomechanix.ai
-exclude: [README.md, CLAUDE.md, tools]   # .claude/ is skipped by Jekyll as a dot-directory
+canonical_url: https://biomechanix.ai        # primary domain; this site is also served at biomechanix.github.io
+exclude: [README.md, CLAUDE.md, tools, deploy]   # .claude/ is skipped by Jekyll as a dot-directory
