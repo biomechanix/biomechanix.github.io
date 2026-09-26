@@ -31,7 +31,7 @@ registered there with its source.
 
 - `_layouts/default.html`: head, nav (Platform · Applications · Company · Support), footer
 - `assets/site.css`: styles (biomechanix.ai brand, dark only). `assets/img/`: logo, favicon, screenshots
-- `_config.yml`: Play ids (`site.play.*`), `support_url`, Jekyll `exclude` (keeps `tools/` and this file off the site)
+- `_config.yml`: Play ids (`site.play.*`), `contact_email` (all contact, support and deletion requests), Jekyll `exclude` (keeps `tools/` and this file off the site)
 - `/privacy` and `/delete-account` and their anchors are linked from the apps and store listings. **Never move them.**
 
 ## Publishing reference
