@@ -20,23 +20,10 @@ shutil.rmtree(out, ignore_errors=True)
 os.makedirs(out)
 shutil.copytree(os.path.join(src, 'assets'), os.path.join(out, 'assets'))
 
-# _config.yml: flat keys plus one level of nesting is all the site uses.
-site, cur = {'time': str(int(time.time()))}, None
-for line in open(os.path.join(src, '_config.yml')):
-    if not line.strip() or line.lstrip().startswith('#'):
-        continue
-    m = re.match(r'^(\s*)([\w-]+):\s*(.*)$', line.rstrip())
-    if not m:
-        continue
-    ind, k, v = m.groups()
-    if not ind:
-        if v:
-            site[k] = v
-        else:
-            site[k] = {}
-            cur = k
-    elif isinstance(site.get(cur), dict):
-        site[cur][k] = v
+# _config.yml parsed as real YAML (inline comments etc. behave as in Jekyll)
+import yaml
+site = yaml.safe_load(open(os.path.join(src, '_config.yml'))) or {}
+site['time'] = str(int(time.time()))
 
 layout = open(os.path.join(src, '_layouts', 'default.html')).read()
 
@@ -56,12 +43,22 @@ def liquid(t, ctx):
     # {{ site.time | date: '%s' }} -> the timestamp (only format the site uses)
     t = re.sub(r"\{\{\s*([\w.]+)\s*\|\s*date:\s*'%s'\s*\}\}", lambda m: str(get(ctx, m.group(1)) or ''), t)
 
-    def var(m):
-        v = get(ctx, m.group(1))
-        if not v and m.group(2):
-            v = get(ctx, m.group(2))
+    def expr(m):
+        """{{ var | default: other | replace: 'a', 'b' }} — the filters this site uses."""
+        parts = [p.strip() for p in m.group(1).split('|')]
+        v = get(ctx, parts[0])
+        for f in parts[1:]:
+            name, _, arg = f.partition(':')
+            name, arg = name.strip(), arg.strip()
+            if name == 'default':
+                v = v or get(ctx, arg)
+            elif name == 'replace':
+                a, b = [x.strip().strip("'\"") for x in re.findall(r"'[^']*'|\"[^\"]*\"", arg)][:2]
+                v = str(v or '').replace(a, b)
+            else:
+                return m.group(0)          # unknown filter: leave it visible (render.py warns)
         return str(v or '')
-    return re.sub(r'\{\{\s*([\w.]+)(?:\s*\|\s*default:\s*([\w.]+))?\s*\}\}', var, t)
+    return re.sub(r'\{\{\s*([\w.]+(?:\s*\|[^}]*)?)\s*\}\}', expr, t)
 
 
 pages = []
@@ -73,7 +70,9 @@ for f in sorted(os.listdir(src)):
     if not m:
         continue
     fm, body = m.groups()
-    ctx = {'site': site, 'page': dict(re.findall(r'^(\w+):\s*(.*)$', fm, re.M))}
+    page = dict(re.findall(r'^(\w+):\s*(.*)$', fm, re.M))
+    page['url'] = '/' if f == 'index.html' else '/' + f                 # Jekyll's page.url for these files
+    ctx = {'site': site, 'page': page}
     html = liquid(layout.replace('{{ content }}', liquid(body, ctx)), ctx)
     open(os.path.join(out, f), 'w').write(html)
     name = f[:-5]

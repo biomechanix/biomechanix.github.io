@@ -1,8 +1,12 @@
 # CLAUDE.md — biomechanix.github.io
 
 Public website for Biomechanix Inc. and its MoveMentor apps (MoveMentor
-Fitness, MoveMentor Physio, Sameeksha). Plain Jekyll on GitHub Pages from
-`main`. **Merging to `main` publishes immediately. There is no staging.**
+Fitness, MoveMentor Physio, Sameeksha). Plain Jekyll, published from `main` to
+**two places**:
+- **biomechanix.github.io** via GitHub Pages. It must stay up, because the apps and store listings link to its `/privacy` and `/delete-account`.
+- **biomechanix.ai** (and www) via Firebase Hosting, project/site `biomechanixdev`. This is the canonical domain (`site.canonical_url`); every page declares `rel="canonical"` there.
+
+**Merging to `main` publishes to both. There is no staging**, except the Firebase preview channel that the deploy workflow creates for each PR.
 
 ## Content skills (`.claude/skills/`): use them for any content work
 
@@ -47,6 +51,12 @@ registered there with its source.
    Self-merge is blocked in auto mode, so give them the `! gh pr merge <N> … --squash --delete-branch` command.
 4. Don't stack PRs. `--delete-branch` closes a PR based on that branch. Test-merge concurrent
    PRs on a scratch branch before saying they're independent.
-5. After the merge: `tools/publish/wait_deploy.sh /<path> "<expected text>"`. HTML may be cached for 10 minutes.
+5. After the merge: `tools/publish/wait_deploy.sh /<path> "<expected text>"` (github.io). HTML may be cached for 10 minutes.
    CSS is cache-busted per build.
-6. Logo/favicon: `python3 tools/brand/make_logo.py`. The "B" is an outlined path because phones lack Arial Black.
+6. biomechanix.ai: `.github/workflows/deploy-biomechanix-ai.yml` builds with GitHub's Jekyll builder and deploys:
+   PR → preview channel (URL commented on the PR), `main` → live. It needs the repo secret
+   `FIREBASE_SERVICE_ACCOUNT_BIOMECHANIXDEV`. Without it the job builds and checks, then skips the deploy.
+   Manual fallback: `tools/publish/deploy_firebase.sh preview|live|rollback`, which exports live github.io, so merge first.
+   Firebase config: `deploy/firebase/firebase.json` (clean URLs, 301s for `.html` and old React routes).
+   Rollback to the old React site: channel `react-site-backup`, until 2026-10-25.
+7. Logo/favicon: `python3 tools/brand/make_logo.py`. The "B" is an outlined path because phones lack Arial Black.
