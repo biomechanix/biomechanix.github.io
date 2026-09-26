@@ -17,6 +17,7 @@ Fitness, MoveMentor Physio, Sameeksha). Plain Jekyll, published from `main` to
 | `web-content-validation` | Before publishing any claim. Claim → source → `claims.yml` → `content_lint.py`, never-publish list, approval gates. |
 | `web-content-audit` | Periodic or pre-release accuracy review. Source drift, store links, consistency, report format. |
 | `web-template-alignment` | Aligning the site to a given template (HTML/CSS theme, design export, XML sitemap/model, mockup). Inventory → approved plan → implement look, keep content → verify. |
+| `web-deploy-biomechanix-ai` | Deploying, previewing or rolling back biomechanix.ai (Firebase). The deploy Action and its secret, redirects for old URLs, troubleshooting. |
 
 Content tools (`tools/content/`):
 
