@@ -66,7 +66,7 @@ if net:
         urls.update(u for u in re.findall(r'<a [^>]*href="(https?://[^"]+)"', open(f).read()))
     for app, pkg in (config.get('play') or {}).items():
         urls.add(f'https://play.google.com/store/apps/details?id={pkg}')
-    urls.add(config.get('support_url', ''))
+    # contact is a mailto: address (contact_email), nothing to fetch
     for u in sorted(filter(None, urls)):
         if '{{' in u:
             continue
